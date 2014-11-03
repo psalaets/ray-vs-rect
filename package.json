@@ -1,0 +1,25 @@
+{
+  "name": "ray-vs-rect",
+  "version": "1.0.0",
+  "description": "Ray-aware rectangle intersection check.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:psalaets/ray-vs-rect.git"
+  },
+  "keywords": [
+    "ray",
+    "rectangle",
+    "intersect",
+    "2d"
+  ],
+  "author": "Paul Salaets <psalaets@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/psalaets/ray-vs-rect/issues"
+  },
+  "homepage": "https://github.com/psalaets/ray-vs-rect"
+}
