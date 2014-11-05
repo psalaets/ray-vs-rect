@@ -1,5 +1,4 @@
 var rayVsLineSegment = require('ray-vs-line-segment');
-var Segment2 = require('segment2');
 var Vec2 = require('vec2');
 
 /**
@@ -19,14 +18,27 @@ function rayVsRect(rayish, rect) {
 function segments(rect) {
   return [
     // top
-    new Segment2(rect, new Vec2(rect.bound.x, rect.y)),
+    segment(rect.x, rect.y, rect.bound.x, rect.y),
     // right
-    new Segment2(new Vec2(rect.bound.x, rect.y), rect.bound),
+    segment(rect.bound.x, rect.y, rect.bound.x, rect.bound.y),
     // bottom
-    new Segment2(new Vec2(rect.x, rect.bound.y), rect.bound),
+    segment(rect.x, rect.bound.y, rect.bound.x, rect.bound.y),
     // left
-    new Segment2(rect, new Vec2(rect.x, rect.bound.y))
+    segment(rect.x, rect.y, rect.x, rect.bound.y)
   ];
+}
+
+function segment(x1, y1, x2, y2) {
+  return {
+    start: {
+      x: x1,
+      y: y1
+    },
+    end: {
+      x: x2,
+      y: y2
+    }
+  };
 }
 
 function rayVsSegment(rayish) {
