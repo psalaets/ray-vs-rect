@@ -1,22 +1,22 @@
 var assert = require('assert');
-
-var Vec2 = require('vec2');
-var Rec2 = require('rec2');
-var Rayish = require('rayish');
-
 var rayVsRect = require('./');
 
 describe('rayVsRect()', function() {
   var rect, rayish;
 
   beforeEach(function() {
-    rect = new Rec2(45, 45, 10, 10);
+    rect = {
+      top: 45,
+      left: 45,
+      width: 10,
+      height: 10
+    };
   });
 
   describe('hits', function() {
     describe('ray goes completely through rect', function() {
       it('returns point where ray enters rect', function() {
-        rayish = new Rayish(new Vec2(10, 50), new Vec2(70, 50));
+        rayish = createRay(10, 50, 70, 50);
 
         var point = rayVsRect(rayish, rect);
 
@@ -27,7 +27,7 @@ describe('rayVsRect()', function() {
 
     describe('ray starts outside, ends inside rect', function() {
       it('returns point where ray enters rect', function() {
-        rayish = new Rayish(new Vec2(10, 50), new Vec2(50, 50));
+        rayish = createRay(10, 50, 50, 50);
 
         var point = rayVsRect(rayish, rect);
 
@@ -38,7 +38,7 @@ describe('rayVsRect()', function() {
 
     describe('ray goes along rect edge', function() {
       it('returns point where ray first hits rect edge', function() {
-        rayish = new Rayish(new Vec2(45, 10), new Vec2(45, 70));
+        rayish = createRay(45, 10, 45, 70);
 
         var point = rayVsRect(rayish, rect);
 
@@ -49,7 +49,7 @@ describe('rayVsRect()', function() {
 
     describe('ray starts inside rect', function() {
       it('returns ray start', function() {
-        rayish = new Rayish(new Vec2(50, 50), new Vec2(50, 10));
+        rayish = createRay(50, 50, 50, 10);
 
         var point = rayVsRect(rayish, rect);
 
@@ -60,7 +60,7 @@ describe('rayVsRect()', function() {
 
     describe('ray starts on rect edge', function() {
       it('returns ray start', function() {
-        rayish = new Rayish(new Vec2(55, 55), new Vec2(70, 50));
+        rayish = createRay(55, 55, 70, 50);
 
         var point = rayVsRect(rayish, rect);
 
@@ -73,7 +73,7 @@ describe('rayVsRect()', function() {
   describe('misses', function() {
     describe('ray does not reach rect', function() {
       it('returns null', function() {
-        rayish = new Rayish(new Vec2(10, 50), new Vec2(40, 50));
+        rayish = createRay(10, 50, 40, 50);
 
         var point = rayVsRect(rayish, rect);
 
@@ -83,7 +83,7 @@ describe('rayVsRect()', function() {
 
     describe('ray goes wide of rect', function() {
       it('returns null', function() {
-        rayish = new Rayish(new Vec2(10, 50), new Vec2(50, 70));
+        rayish = createRay(10, 50, 50, 70);
 
         var point = rayVsRect(rayish, rect);
 
@@ -93,7 +93,7 @@ describe('rayVsRect()', function() {
 
     describe('ray goes away from rect', function() {
       it('returns null', function() {
-        rayish = new Rayish(new Vec2(40, 50), new Vec2(10, 50));
+        rayish = createRay(40, 50, 10, 50);
 
         var point = rayVsRect(rayish, rect);
 
@@ -102,3 +102,16 @@ describe('rayVsRect()', function() {
     });
   });
 });
+
+function createRay(x1, y1, x2, y2) {
+  return {
+    start: {
+      x: x1,
+      y: y1
+    },
+    end: {
+      x: x2,
+      y: y2
+    }
+  };
+}

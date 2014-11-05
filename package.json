@@ -23,9 +23,7 @@
   },
   "homepage": "https://github.com/psalaets/ray-vs-rect",
   "devDependencies": {
-    "mocha": "^2.0.1",
-    "rayish": "^1.2.0",
-    "rec2": "^1.2.0"
+    "mocha": "^2.0.1"
   },
   "dependencies": {
     "ray-vs-line-segment": "^2.0.0",
