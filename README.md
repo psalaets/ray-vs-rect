@@ -6,16 +6,21 @@ Ray-aware rectangle intersection check.
 
     var rayVsRect = require('ray-vs-rect');
     
-    var Vec2 = require('vec2');
-    var Rayish = require('rayish');
-    var Rec2 = require('rec2');
+    var ray = {
+      start: {x: 10, y: 50},
+      end: {x: 70, y: 50}
+    };
+
+    var rect = {
+      left: 45,
+      top: 45,
+      width: 10,
+      height: 10
+    };
     
-    var rayish = new Rayish(new Vec2(10, 50), new Vec2(70, 50));
-    var rect = new Rec2(45, 45, 10, 10);
+    var point = rayVsRect(ray, rect);
     
-    var point = rayVsRect(rayish, rect);
-    
-    point // (45, 50)
+    point // {x: 45, y: 50}
 
 ## Install
 
