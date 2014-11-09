@@ -1,6 +1,6 @@
 {
   "name": "ray-vs-rect",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Ray-aware rectangle intersection check.",
   "main": "index.js",
   "scripts": {
